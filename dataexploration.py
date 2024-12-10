@@ -28,10 +28,20 @@ print(df_male.head())
 
 print(f'There are {len(df_male)} male data points and {len(df_female)} female datapoints')
 
-correlation_matrix = df_male.corr()
+correlation_matrix_male = df_male.corr()
+correlation_matrix_female = df_female.corr()
 
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix for US healthcare charges')
+
+figure, (ax1, ax2) = plt.subplots(ncols=2, figsize=(15, 5))
+
+sns.heatmap(correlation_matrix_male, annot=True, cmap='coolwarm', ax=ax1)
+ax1.set_title('Correlation Matrix for Male US healthcare charges')
+
+sns.heatmap(correlation_matrix_female, annot=True, cmap='coolwarm', ax=ax2)
+ax2.set_title('Correlation Matrix for Female US healthcare charges')
+
 plt.show()
 
-print(correlation_matrix)
+
+
+print(correlation_matrix_male)
